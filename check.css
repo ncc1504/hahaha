@@ -1,0 +1,119 @@
+/* Toàn bộ nền và chữ */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #ffe6f0; /* hồng pastel */
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  color: #d63384; /* chữ hồng đậm */
+}
+
+/* Hộp chứa nội dung */
+.loading-box {
+  display: inline-block;
+  background: white;
+  padding: 20px 30px;
+  border-radius: 12px;
+  border: 2px solid #ff4da6;
+  box-shadow: 0 4px 15px rgba(255, 77, 166, 0.2);
+  margin-top: 40px;
+}
+
+/* Ảnh quà tặng */
+.gift-img {
+  width: 100px;
+  margin-bottom: 15px;
+}
+
+h2 {
+  color: #ff4da6;
+  margin: 0 0 15px 0;
+}
+
+/* Thanh loading */
+.progress {
+  width: 250px; /* nhỏ gọn */
+  background-color: #ffd6e8;
+  margin: 0 auto;
+  height: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+  border: 1px solid #ff4da6;
+  position: relative;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(270deg, #ff4da6, #ff99cc, #ff4da6);
+  background-size: 200% 100%;
+  animation: loadingGradient 1.2s linear infinite;
+  transition: width 0.3s ease;
+  position: relative;
+}
+
+/* Ánh sáng lóe ở đầu thanh */
+.progress-bar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -5px;
+  width: 15px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  animation: glow 1.2s linear infinite;
+}
+
+/* Hiệu ứng gradient chạy ngang */
+@keyframes loadingGradient {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Hiệu ứng ánh sáng di chuyển */
+@keyframes glow {
+  0% {
+    right: -5px;
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    right: 100%;
+    opacity: 0;
+  }
+}
+
+/* Nền tối khi hiện ảnh cuối */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0);
+  transition: background 1.5s ease-in-out;
+  z-index: 9998;
+}
+
+/* Ảnh xuất hiện ở giữa màn hình */
+.final-image {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 60%;
+  max-height: 60%;
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(255, 105, 180, 0.5);
+  z-index: 9999;
+  border: 4px solid #ffb6c1;
+}
